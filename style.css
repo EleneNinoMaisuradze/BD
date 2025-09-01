@@ -4,35 +4,49 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 body {
-  background-color: #fdbf00;
+  background-color: #0b1e4a; /* ღამის ლურჯი ფონზე */
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* აუცილებელია რომ ვერტიკალურადაც სწორად გააჩინოს */
+  margin: 0;
+}
+
+#fireworks {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
 }
 .card {
   width: 760px;
   height: 480px;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  -webkit-perspective: 1200px;
   perspective: 1200px;
   transition: 1s;
+  z-index: 1;
+  position: relative; /* ცენტრალიზაციისთვის absolute საჭირო აღარაა */
 }
+
 .card:hover {
   transform: rotate(-5deg);
 }
+
 .card:hover .outside {
   transform: rotateY(-130deg);
 }
-.outside,
-.inside {
+
+.outside, .inside {
   height: 100%;
   width: 50%;
   position: absolute;
   left: 50.1%;
 }
+
 .inside {
   background: linear-gradient(to right, #e7e7e7, #ffffff 30%);
   line-height: 3;
@@ -44,38 +58,28 @@ body {
   align-items: center;
   left: 50%;
 }
+
 .outside {
-  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   z-index: 1;
   transform-origin: left;
   transition: 2s;
   cursor: pointer;
 }
-.front,
-.back {
+
+.front, .back {
   height: 100%;
   width: 100%;
   position: absolute;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transform: rotateX(0deg);
 }
-.front {
-  background-color: #ffffff;
-}
-.back {
-  transform: rotateY(180deg);
-  background: linear-gradient(to left, #e7e7e7, #ffffff 30%);
-}
-.cake {
-  width: 100%;
-  position: absolute;
-  bottom: 30px;
-}
-.top-layer,
-.middle-layer,
-.bottom-layer {
+
+.front { background-color: #ffffff; }
+.back { transform: rotateY(180deg); background: linear-gradient(to left, #e7e7e7, #ffffff 30%); }
+
+.cake { width: 100%; position: absolute; bottom: 30px; }
+
+.top-layer, .middle-layer, .bottom-layer {
   height: 80px;
   width: 240px;
   background-repeat: repeat;
@@ -92,30 +96,19 @@ body {
   position: relative;
   margin: auto;
 }
-.middle-layer {
-  transform: scale(0.85);
-  top: 6px;
-}
-.top-layer {
-  transform: scale(0.7);
-  top: 26px;
-}
+
+.middle-layer { transform: scale(0.85); top: 6px; }
+.top-layer { transform: scale(0.7); top: 26px; }
+
 .candle {
   height: 45px;
   width: 15px;
-  background: repeating-linear-gradient(
-    45deg,
-    #fd3018 0,
-    #fd3018 5px,
-    #ffa89e 5px,
-    #ffa89e 10px
-  );
+  background: repeating-linear-gradient(45deg, #fd3018 0, #fd3018 5px, #ffa89e 5px, #ffa89e 10px);
   position: absolute;
   margin: auto;
-  left: 0;
-  right: 0;
-  bottom: 202px;
+  left: 0; right: 0; bottom: 202px;
 }
+
 .candle:before {
   content: "";
   position: absolute;
@@ -127,15 +120,6 @@ body {
   transform: rotate(45deg);
   left: -1px;
 }
-.outside p {
-  font-size: 23px;
-  text-transform: uppercase;
-  margin-top: 30px;
-  text-align: center;
-  letter-spacing: 6px;
-  color: #000046;
-}
-.inside p {
-  font-size: 14px; /* იყო 18px → დავაპატარავე */
-  line-height: 22px; /* ცოტა უფრო კომპაქტური გავხადე */
-}
+
+.outside p { font-size: 23px; text-transform: uppercase; text-align: center; color: #000000; letter-spacing: 6px; margin-top: 30px; }
+.inside p { font-size: 14px; line-height: 22px; }
